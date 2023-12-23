@@ -1,0 +1,55 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 03af22f2b..2c71a91c7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -155,3 +155,50 @@ option(ENABLE_BENCHMARKS "Enable Benchmarks" OFF)
+ if(ENABLE_BENCHMARKS)
+ 	add_subdirectory(benchmark)
+ endif()
++
++# --------------------------------
++# Install the libraries
++install(TARGETS cri_v1
++                cri_v1alpha2
++                driver_event_schema
++                pman
++                scap
++                sinsp
++                scap_engine_bpf # $<$<BOOL:${HAS_ENGINE_BPF}>:scap_engine_bpf>
++                scap_engine_gvisor # $<$<BOOL:${HAS_ENGINE_GVISOR}>:scap_engine_gvisor>
++                scap_engine_kmod # $<$<BOOL:${HAS_ENGINE_KMOD}>:scap_engine_kmod>
++                scap_engine_modern_bpf # $<$<BOOL:${HAS_ENGINE_MODERN_BPF}>:scap_engine_modern_bpf>
++                scap_engine_nodriver # $<$<BOOL:${HAS_ENGINE_NODRIVER}>:scap_engine_nodriver>
++                scap_engine_noop
++                scap_engine_savefile # $<$<BOOL:${HAS_ENGINE_SAVEFILE}>:scap_engine_savefile>
++                scap_engine_source_plugin # $<$<BOOL:${HAS_ENGINE_SOURCE_PLUGIN}>:scap_engine_source_plugin>
++                scap_engine_test_input # $<$<BOOL:${HAS_ENGINE_TEST_INPUT}>:scap_engine_test_input>
++                scap_engine_util
++                scap_error
++                scap_event_schema
++                scap_platform
++                scap_platform_util
++                scap_savefile_converter
++        EXPORT falcosecurity-libs-targets
++        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
++        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDE}
++)
++
++# Generate and install the necessary CMake files
++include(CMakePackageConfigHelpers)
++write_basic_package_version_file(
++    falcosecurity-libsConfigVersion.cmake
++    VERSION 0.18.0
++    COMPATIBILITY AnyNewerVersion
++)
++
++install(EXPORT falcosecurity-libs-targets
++        FILE falcosecurity-libsTargets.cmake
++        NAMESPACE falcosecurity::
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/falcosecurity-libs)
++
++install(FILES falcosecurity-libsConfig.cmake
++              ${CMAKE_CURRENT_BINARY_DIR}/falcosecurity-libsConfigVersion.cmake
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/falcosecurity-libs)
