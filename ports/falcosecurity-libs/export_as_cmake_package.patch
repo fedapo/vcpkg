@@ -1,0 +1,10 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 03af22f2b..0d353cabf 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -155,3 +155,5 @@ option(ENABLE_BENCHMARKS "Enable Benchmarks" OFF)
+ if(ENABLE_BENCHMARKS)
+ 	add_subdirectory(benchmark)
+ endif()
++
++include(CMakeInstallTargets.cmake)

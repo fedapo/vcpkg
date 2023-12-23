@@ -1,0 +1,34 @@
+{
+  "name": "falcosecurity-libs",
+  "version": "0.19.0",
+  "port-version": 0,
+  "description": [
+      "A library at the foundation of Falco (https://github.com/falcosecurity/falco)",
+      "It contains the components libsinsp, libscap, the kernel module, and the eBPF probes sources."
+  ],
+  "homepage": "https://github.com/falcosecurity/libs",
+  "license": "Apache-2.0",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name" : "vcpkg-cmake-config",
+      "host" : true
+    },
+    "c-ares",
+    "curl",
+    "elfutils",
+    "grpc",
+    "gtest",
+    "jsoncpp",
+    "openssl",
+    "protobuf",
+    "re2",
+    "tbb",
+    "uthash",
+    "valijson",
+    "zlib"
+  ]
+}
