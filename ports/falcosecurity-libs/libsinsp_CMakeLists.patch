@@ -1,0 +1,13 @@
+diff --git a/userspace/libsinsp/CMakeLists.txt b/userspace/libsinsp/CMakeLists.txt
+index 6104603e8..270675ba7 100644
+--- a/userspace/libsinsp/CMakeLists.txt
++++ b/userspace/libsinsp/CMakeLists.txt
+@@ -164,7 +164,7 @@ set_sinsp_target_properties(sinsp)
+ target_link_libraries(sinsp
+ 		PUBLIC scap
+ 		PRIVATE
+-			"${CURL_LIBRARIES}"
++			CURL::libcurl
+ 			"${JSONCPP_LIB}"
+ 			"${RE2_LIB}"
+ )
