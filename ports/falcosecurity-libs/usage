@@ -1,0 +1,4 @@
+The package falcosecurity-libs is compatible with built-in CMake targets:
+
+    find_package(falcosecurity-libs REQUIRED)
+    target_link_libraries(main PRIVATE falcosecurity::scap falcosecurity::sinsp)
